@@ -20,16 +20,11 @@ import java.math.BigInteger;
 public class History implements Serializable {
     public static final String COLLECTION_NAME = "historys";
 
-    @Id
-    private BigInteger id;
-    /* *******************************************************
-     Если вы хотите, чтобы ID объекта была автогенерируемая
-     строка (об этом я писал в посте), то опишите поле ID так:
-     @Id
-     private String id;
-     ********************************************************* */
 
-    private String userName;
+
+
+
+    private BigInteger idPerson;
     private String operationName;
     private String date;
 
@@ -38,20 +33,13 @@ public class History implements Serializable {
     }
 
     public BigInteger getId() {
-        return id;
+        return idPerson;
     }
 
     public void setId(BigInteger id) {
-        this.id = id;
+        this.idPerson = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getOperationName() {
         return operationName;
