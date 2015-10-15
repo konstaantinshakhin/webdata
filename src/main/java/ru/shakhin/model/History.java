@@ -4,7 +4,6 @@ package ru.shakhin.model;
  * Created by kshahin on 10/14/2015.
  */
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -24,7 +23,7 @@ public class History implements Serializable {
 
 
 
-    private BigInteger idPerson;
+    private BigInteger idManager;
     private String operationName;
     private String date;
 
@@ -33,11 +32,11 @@ public class History implements Serializable {
     }
 
     public BigInteger getId() {
-        return idPerson;
+        return idManager;
     }
 
     public void setId(BigInteger id) {
-        this.idPerson = id;
+        this.idManager = id;
     }
 
 

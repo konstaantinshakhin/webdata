@@ -9,6 +9,9 @@ import ru.shakhin.model.Contact;
 import ru.shakhin.model.History;
 
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,10 +23,14 @@ public class HistoryDao {
     private MongoOperations mongoOperations;
 
     public void save(History history) {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date today = new Date();
+        String sdate = df.format(today);
+        history.setDate(sdate);
         mongoOperations.save(history);
     }
 
-    public List<History> getByPersonId(BigInteger idPrson){
-        return mongoOperations.find(Query.query(Criteria.where("idPrson").is(idPrson)), History.class);
+    public List<History> getHistoryByManagerId(BigInteger idManager){
+        return mongoOperations.find(Query.query(Criteria.where("idManager").is(idManager)), History.class);
     }
 }
