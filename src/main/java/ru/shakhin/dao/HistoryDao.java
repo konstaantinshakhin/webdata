@@ -30,7 +30,7 @@ public class HistoryDao {
         mongoOperations.save(history);
     }
 
-    public List<History> getHistoryByManagerId(BigInteger idManager){
-        return mongoOperations.find(Query.query(Criteria.where("idManager").is(idManager)), History.class);
+    public List<History> getHistoryByPersonId(BigInteger idPerson){
+        return mongoOperations.find(Query.query(Criteria.where("idPerson").is(idPerson)), History.class);
     }
 }

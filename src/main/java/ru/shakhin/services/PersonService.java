@@ -1,10 +1,10 @@
 package ru.shakhin.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.shakhin.dao.HistoryDao;
 import ru.shakhin.dao.PersonDao;
-import ru.shakhin.dao.SequenceDao;
-import ru.shakhin.model.Contact;
+import ru.shakhin.dao.PersonSequenceDao;
 import ru.shakhin.model.History;
 import ru.shakhin.model.Person;
 
@@ -14,26 +14,27 @@ import java.util.List;
 /**
  * Created by kshahin on 10/15/2015.
  */
+@Service
 public class PersonService {
     @Autowired
-    private SequenceDao sequenceDao;
+    private PersonSequenceDao psequenceDao;
     @Autowired
     private PersonDao personDao;
     @Autowired
     private HistoryDao historyDao;
 
     public void add(Person person,BigInteger idManager) {
-        person.setId(sequenceDao.getNextSequenceId(Person.COLLECTION_NAME));
+        person.setId(psequenceDao.getNextSequenceId(Person.COLLECTION_NAME));
         History history = new History();
         history.setOperationName("create");
-        history.setId(idManager);
+        history.setIdPerson(person.getId());
         historyDao.save(history);
         personDao.save(person);
     }
     public void update(Person person,BigInteger idManager){
         History history = new History();
         history.setOperationName("edit");
-        history.setId(idManager);
+        history.setIdPerson(person.getId());
         historyDao.save(history);
         personDao.save(person);
     }
@@ -42,12 +43,12 @@ public class PersonService {
         return personDao.get(id);
     }
 
-    public void remove(BigInteger id,BigInteger idManager){
+    public void remove(Person person,BigInteger idManager){
         History history = new History();
         history.setOperationName("delete");
-        history.setId(idManager);
+        history.setIdPerson(person.getId());
         historyDao.save(history);
-        personDao.remove(id);
+        personDao.remove(person.getId());
     }
 
     public List<Person> getAll(){
@@ -58,7 +59,7 @@ public class PersonService {
         return personDao.getNotDelete();
     }
 
-    public List<History> getHistory(BigInteger idManager){
-        return historyDao.getHistoryByManagerId(idManager);
+    public List<History> getHistory(BigInteger idPerson){
+        return historyDao.getHistoryByPersonId(idPerson);
     }
 }

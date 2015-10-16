@@ -17,13 +17,15 @@ import java.math.BigInteger;
  */
 @Document(collection = History.COLLECTION_NAME)
 public class History implements Serializable {
-    public static final String COLLECTION_NAME = "historys";
+    public static final String COLLECTION_NAME = "historyes";
 
 
 
 
 
     private BigInteger idManager;
+    private BigInteger idPerson;
+    private Manager manager;
     private String operationName;
     private String date;
 
@@ -54,5 +56,13 @@ public class History implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public BigInteger getIdPerson() {
+        return idPerson;
+    }
+
+    public void setIdPerson(BigInteger idPerson) {
+        this.idPerson = idPerson;
     }
 }

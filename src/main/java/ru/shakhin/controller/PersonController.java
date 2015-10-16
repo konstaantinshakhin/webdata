@@ -18,23 +18,25 @@ import java.math.BigInteger;
  */
 @Controller
 public class PersonController {
+
     @Autowired
     private PersonService personService;
+
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     public ModelAndView showAll() {
-        ModelAndView modelAndView = new ModelAndView("all");
+        ModelAndView modelAndView = new ModelAndView("listpersons");
 
         modelAndView.addObject("persons", personService.getAll());
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addperson", method = RequestMethod.GET)
-    public ModelAndView showAddForm() {
-        return new ModelAndView("person_form", "person", new Contact());
+    @RequestMapping(value = "/addPerson", method = RequestMethod.GET)
+    public ModelAndView showEditForm() {
+        return new ModelAndView("editperson", "person", new Person());
     }
 
-    @RequestMapping(value = "/addperson", method = RequestMethod.POST)
+    @RequestMapping(value = "/editPerson", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") Person person) {
         if(person.getId() == null) personService.add(person,new BigInteger("0"));
         else personService.update(person,new BigInteger("0"));
@@ -42,17 +44,20 @@ public class PersonController {
         return "redirect:/persons";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView showEditForm(@RequestParam(required = true) BigInteger id) {
-        return new ModelAndView("add_form", "contact", personService.get(id));
+    @RequestMapping(value = "/editPerson", method = RequestMethod.GET)
+    public ModelAndView editPerson(@RequestParam(required = true) BigInteger id) {
+        return new ModelAndView("editperson", "person", personService.get(id));
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteContact(@RequestParam(required = true) BigInteger id) {
-        personService.remove(id,new BigInteger("0"));
+    @RequestMapping(value = "/deletePerson", method = RequestMethod.GET)
+    public String deletePerson(@RequestParam(required = true) BigInteger id) {
+        personService.remove(personService.get(id),new BigInteger("0"));
 
         return "redirect:/persons";
     }
 
-
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public ModelAndView history(@RequestParam(required = true) BigInteger id) {
+        return new ModelAndView("history", "historyes", personService.getHistory(id));
+    }
 }

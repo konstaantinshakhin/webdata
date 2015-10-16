@@ -13,27 +13,28 @@
     <title>Все записи</title>
 </head>
 <body>
-<table width="600px">
+<table border="1px">
     <tr>
-        <td><b>СНИИЛС</b></td>
+        <td><b>СНИЛС</b></td>
         <td><b>ФИО</b></td>
         <td><b>Дата Рождения</b></td>
         <td><b>Пол</b></td>
         <td><b>Место Рождения</b></td>
+        <td><b>Действия</b></td>
     </tr>
     <c:forEach var="person" items="${persons}">
         <tr>
             <td>${person.snils}</td>
-            <td>${contact.fio}</td>
-            <td>${contact.birthDate}</td>
-            <td>${contact.gender}</td>
-            <td>${contact.birthPlace}</td>
-            <td><a href="/edit?id=${contact.id}">Edit</a> | <a href="/delete?id=${contact.id}">Delete</a> <a href="/history?id=${contact.id}">history</a></td>
+            <td>${person.fio}</td>
+            <td>${person.birthDate}</td>
+            <td>${person.gender}</td>
+            <td>${person.birthPlace}</td>
+            <td><a href="/editPerson?id=${person.id}">Edit</a> | <a href="/deletePerson?id=${person.id}">Delete</a> |  <a href="/history?id=${person.id}">history</a></td>
         </tr>
     </c:forEach>
     <tr>
-        <td colspan="5">
-            <a href="/add">Добавить запись</a>
+        <td colspan="6">
+            <a href="/addPerson">Добавить запись</a>
         </td>
     </tr>
 </table>
