@@ -20,7 +20,7 @@
        <td><b>Изменение</b></td>
 
     </tr>
-    <c:forEach var="historyes" items="${history}">
+    <c:forEach var="history" items="${historyes}">
         <tr>
             <td>${history.idPerson}</td>
             <td>${history.date}</td>

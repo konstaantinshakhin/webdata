@@ -31,6 +31,7 @@ public class HistoryDao {
     }
 
     public List<History> getHistoryByPersonId(BigInteger idPerson){
-        return mongoOperations.find(Query.query(Criteria.where("idPerson").is(idPerson)), History.class);
+        List<History> lh = mongoOperations.find(Query.query(Criteria.where("idPerson").is(idPerson)), History.class);
+        return lh;
     }
 }

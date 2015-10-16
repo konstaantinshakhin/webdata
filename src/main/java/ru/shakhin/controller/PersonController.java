@@ -58,6 +58,7 @@ public class PersonController {
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)
     public ModelAndView history(@RequestParam(required = true) BigInteger id) {
-        return new ModelAndView("history", "historyes", personService.getHistory(id));
+        ModelAndView mdlv = new ModelAndView("history", "historyes", personService.getHistory(id));
+        return mdlv;
     }
 }
