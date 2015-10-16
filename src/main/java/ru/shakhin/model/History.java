@@ -25,7 +25,7 @@ public class History implements Serializable {
 
     private BigInteger idManager;
     private BigInteger idPerson;
-    private Manager manager;
+    private String snils;
     private String operationName;
     private String date;
 
@@ -64,5 +64,13 @@ public class History implements Serializable {
 
     public void setIdPerson(BigInteger idPerson) {
         this.idPerson = idPerson;
+    }
+
+    public String getSnils() {
+        return snils;
+    }
+
+    public void setSnils(String snils) {
+        this.snils = snils;
     }
 }

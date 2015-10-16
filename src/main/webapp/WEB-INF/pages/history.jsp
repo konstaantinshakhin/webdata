@@ -15,14 +15,15 @@
 <table border="1px">
     <tr>
 
-       <td><b>Дата</b></td>
-       <td><b>Имя менеджера</b></td>
+
+       <td><b>Снилс</b></td>
+        <td><b>Дата</b></td>
        <td><b>Изменение</b></td>
 
     </tr>
     <c:forEach var="history" items="${historyes}">
         <tr>
-            <td>${history.idPerson}</td>
+            <td>${history.snils}</td>
             <td>${history.date}</td>
             <td>${history.operationName}</td>
 

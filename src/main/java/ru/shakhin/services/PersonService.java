@@ -28,6 +28,7 @@ public class PersonService {
         History history = new History();
         history.setOperationName("create");
         history.setIdPerson(person.getId());
+        history.setSnils(person.getSnils());
         historyDao.save(history);
         personDao.save(person);
     }
@@ -35,6 +36,7 @@ public class PersonService {
         History history = new History();
         history.setOperationName("edit");
         history.setIdPerson(person.getId());
+        history.setSnils(person.getSnils());
         historyDao.save(history);
         personDao.save(person);
     }
@@ -47,6 +49,7 @@ public class PersonService {
         History history = new History();
         history.setOperationName("delete");
         history.setIdPerson(person.getId());
+        history.setSnils(person.getSnils());
         historyDao.save(history);
         personDao.remove(person.getId());
     }
